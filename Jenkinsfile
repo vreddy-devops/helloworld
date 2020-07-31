@@ -29,12 +29,14 @@ node {
             }
         }
         stage('Clean Up') {
-            sh "docker images ${DOCKER_GROUP}/${DOCKER_IMAGE} --filter \"before=${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}\" -q | xargs docker rmi || true"
+            sh "docker images ${DOCKER_GROUP}/${DOCKER_IMAGE} --filter \"before=${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}\" -q | xargs docker rmi -f || true"
         }
-    }catch(Exception e) {
+    } 
+    catch(Exception e) {
        currentBuild.result = "FAILURE"
        throw e
-    } finally {
+    } 
+    finally {
         notify(currentBuild.result)
         cleanWs()
     }
