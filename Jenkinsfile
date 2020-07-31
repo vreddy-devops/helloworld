@@ -1,7 +1,3 @@
-import java.text.SimpleDateFormat
-import groovy.transform.Field
-@Library('jenkins-pipeline-utils') _
-
 node {
     try {
         stage('Preparation') {
