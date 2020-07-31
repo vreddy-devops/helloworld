@@ -31,14 +31,13 @@ node {
         stage('Clean Up') {
             sh "docker images ${DOCKER_GROUP}/${DOCKER_IMAGE} --filter \"before=${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}\" -q | xargs docker rmi || true"
         }
-    }
-    catch (Exception err) {
-        currentBuild.result = 'FAILED'
-        throw err
-    }
-    finally {
+    }catch(Exception e) {
+       currentBuild.result = "FAILURE"
+       throw e
+    } finally {
         notify(currentBuild.result)
         cleanWs()
     }
+
 
 }
