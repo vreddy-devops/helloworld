@@ -28,10 +28,17 @@ node {
                 app.push('latest')
             }
         }
+        stage('Clean Up') {
+            sh "docker images ${DOCKER_GROUP}/${DOCKER_IMAGE} --filter \"before=${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}\" -q | xargs docker rmi || true"
+        }
     }
     catch (err) {
         currentBuild.result = 'FAILED'
         throw err
+    }
+    finally {
+        notify(currentBuild.result)
+        cleanWs()
     }
 
 }
