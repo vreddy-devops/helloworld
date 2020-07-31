@@ -37,7 +37,6 @@ node {
         throw err
     } 
     finally {
-        notify(currentBuild.result)
         cleanWs()
     }
 }
