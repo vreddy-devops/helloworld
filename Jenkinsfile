@@ -14,7 +14,10 @@ node {
                     branches: [[name: 'pipeline']], 
                     doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
                     userRemoteConfigs: [
-                        [credentialsId: GIT_CREDENTIALS_ID, url: GIT_URL]
+                        [
+                            credentialsId: GIT_CREDENTIALS_ID, 
+                            url: GIT_URL
+                        ]
                     ]
                 ]
             )
