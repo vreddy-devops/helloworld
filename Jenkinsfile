@@ -36,8 +36,8 @@ node {
         currentBuild.result = 'FAILED'
         throw err
     } 
-    // finally {
-    //     notify(currentBuild.result)
-    //     cleanWs()
-    // }
+    finally {
+        notify(currentBuild.result)
+        cleanWs()
+    }
 }
