@@ -11,6 +11,12 @@ node {
         stage('Build Docker Image') {
             app = docker.build("${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}")
         }
+        stage('Publish Image') {
+            withDockerRegistry([credentialsId: DOCKER_REGISTRY_CREDENTIALS_ID]) {
+                app.push()
+                app.push('latest')
+            }
+        }
     }
     catch (err) {
         currentBuild.result = 'FAILED'
