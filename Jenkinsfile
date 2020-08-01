@@ -1,6 +1,7 @@
 DOCKER_GROUP = 'vinodtaborda'
 DOCKER_IMAGE = 'helloworld'
 DOCKER_REGISTRY_CREDENTIALS_ID = 'c1b47731-842a-475c-adb9-69c94ff40f1d'
+DOCKER_CONTAINER_NAME = 'HelloWorld'
 GIT_URL = 'git@github.com:vreddy-devops/helloworld.git'
 GIT_CREDENTIALS_ID = 'f10a8cc7-7ebf-4dc1-9ad4-2a8b37c8edec'
 node {
@@ -29,6 +30,14 @@ node {
             withDockerRegistry([credentialsId: DOCKER_REGISTRY_CREDENTIALS_ID]) {
                 app.push()
                 app.push('latest')
+            }
+        }
+        stage('Deploy') {
+            sh "docker ps --all --quiet --filter \"name=cm-latest\" | xargs docker stop"
+            sh "docker ps --all --quiet --filter \"name=cm-latest\" | xargs docker rm"
+            withDockerRegistry([credentialsId: DOCKER_REGISTRY_CREDENTIALS_ID]) {
+                sh "docker pull ${DOCKER_GROUP}/${DOCKER_IMAGE}"
+                sh "docker run --detach --publish 80:3000 --name ${DOCKER_CONTAINER_NAME} ${DOCKER_GROUP}/${DOCKER_IMAGE}"
             }
         }
         stage('Clean Up') {
