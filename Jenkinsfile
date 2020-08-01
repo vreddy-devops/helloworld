@@ -8,20 +8,20 @@ node {
     def app
     try {
         stage('Preparation') {
-            // checkout scm
-            checkout(
-                [
-                    $class: 'GitSCM', 
-                    branches: [[name: 'pipeline']], 
-                    doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
-                    userRemoteConfigs: [
-                        [
-                            credentialsId: GIT_CREDENTIALS_ID, 
-                            url: GIT_URL
-                        ]
-                    ]
-                ]
-            )
+            checkout scm
+            // checkout(
+            //     [
+            //         $class: 'GitSCM', 
+            //         branches: [[name: 'pipeline']], 
+            //         doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
+            //         userRemoteConfigs: [
+            //             [
+            //                 credentialsId: GIT_CREDENTIALS_ID, 
+            //                 url: GIT_URL
+            //             ]
+            //         ]
+            //     ]
+            // )
         }
         stage('Build Docker Image') {
             app = docker.build("${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}")
