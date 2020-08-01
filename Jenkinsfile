@@ -32,14 +32,14 @@ node {
                 app.push('latest')
             }
         }
-        stage('Deploy') {
-            sh "docker rm $(docker ps --all --quiet)"
-            sh "docker rm $(docker ps --quiet --filter status=exited)"
-            withDockerRegistry([credentialsId: DOCKER_REGISTRY_CREDENTIALS_ID]) {
-                sh "docker pull ${DOCKER_GROUP}/${DOCKER_IMAGE}"
-                sh "docker run --detach --publish 80:3000 --name ${DOCKER_CONTAINER_NAME} ${DOCKER_GROUP}/${DOCKER_IMAGE}"
-            }
-        }
+        // stage('Deploy') {
+        //     sh "docker rm $(docker ps --all --quiet)"
+        //     sh "docker rm $(docker ps --quiet --filter status=exited)"
+        //     withDockerRegistry([credentialsId: DOCKER_REGISTRY_CREDENTIALS_ID]) {
+        //         sh "docker pull ${DOCKER_GROUP}/${DOCKER_IMAGE}"
+        //         sh "docker run --detach --publish 80:3000 --name ${DOCKER_CONTAINER_NAME} ${DOCKER_GROUP}/${DOCKER_IMAGE}"
+        //     }
+        // }
         stage('Clean Up') {
             sh "docker images ${DOCKER_GROUP}/${DOCKER_IMAGE} --filter \"before=${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}\" -q | xargs docker rmi -f || true"
         }
