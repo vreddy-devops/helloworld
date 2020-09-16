@@ -3,7 +3,7 @@ DOCKER_IMAGE = 'helloworld'
 DOCKER_REGISTRY_CREDENTIALS_ID = 'c1b47731-842a-475c-adb9-69c94ff40f1d'
 DOCKER_CONTAINER_NAME = 'HelloWorld'
 GIT_URL = 'git@github.com:vreddy-devops/helloworld.git'
-GIT_CREDENTIALS_ID = 'f10a8cc7-7ebf-4dc1-9ad4-2a8b37c8edec'
+GIT_CREDENTIALS_ID = '3a6ccec5-111d-41b5-9360-83afd9d02528'
 node {
     def app
     try {
