@@ -1,9 +1,9 @@
 DOCKER_GROUP = 'vinodtaborda'
 DOCKER_IMAGE = 'helloworld'
-DOCKER_REGISTRY_CREDENTIALS_ID = '51afcef3-669a-410e-999e-734f212cce19'
+DOCKER_REGISTRY_CREDENTIALS_ID = 'b9ff1e3b-436e-4205-be16-7ee20c84caf3'
 DOCKER_CONTAINER_NAME = 'HelloWorld'
 GIT_URL = 'git@github.com:vreddy-devops/helloworld.git'
-GIT_CREDENTIALS_ID = 'c41646e5-25ae-461b-9b30-c2df3e895ca9'
+GIT_CREDENTIALS_ID = '4cb1f046-0ad0-4223-8176-f17a87e92539'
 node {
     def app
     try {
