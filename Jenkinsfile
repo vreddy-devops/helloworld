@@ -1,6 +1,6 @@
 DOCKER_GROUP = 'vinodtaborda'
 DOCKER_IMAGE = 'helloworld'
-DOCKER_REGISTRY_CREDENTIALS_ID = 'b9ff1e3b-436e-4205-be16-7ee20c84caf3'
+DOCKER_REGISTRY_CREDENTIALS_ID = '50d4733b-3f2c-4e21-b899-3a47298ee3dd'
 DOCKER_CONTAINER_NAME = 'HelloWorld'
 GIT_URL = 'git@github.com:vreddy-devops/helloworld.git'
 GIT_CREDENTIALS_ID = '4cb1f046-0ad0-4223-8176-f17a87e92539'
